@@ -1,14 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> 5 Days Gift | From Shahid 🧡</title>
+  <title>5 Days Gift | From Shahid 🧡</title>
+
   <style>
+
     body {
       margin: 0;
-     background:linear-gradient(135deg, #f0db1b 10%, #42ffe0 30%, #fe2273 70%, #08d3ea 100%);
+      background:linear-gradient(135deg, #f0db1b 10%, #42ffe0 30%, #fe2273 70%, #08d3ea 100%);
       background-size: 200% 200%;
       animation: gradientMove 8s ease infinite;
       color: #fff;
@@ -70,43 +71,124 @@
       font-size: 0.9rem;
     }
 
+    .lock-message {
+      margin-top: 18px;
+      background: rgba(255,255,255,0.2);
+      padding: 14px 18px;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+      display: none;
+      animation: fadeIn 0.5s ease;
+      max-width: 320px;
+    }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes pulse {
-      0%, 100% { text-shadow: 0 0 10px #fff, 0 0 25px #fff; }
-      50% { text-shadow: 0 0 25px #fff, 0 0 50px #fff; }
+      0%, 100% {
+        text-shadow: 0 0 10px #fff, 0 0 25px #fff;
+      }
+
+      50% {
+        text-shadow: 0 0 25px #fff, 0 0 50px #fff;
+      }
     }
 
     @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
+
   </style>
 </head>
+
 <body>
+
   <h1>Welcome to Your 5-Day Gift 🎁</h1>
+
   <p>
-    Hey Khizar aka Mistri 🧡 ..., this isn’t just a website —  
-    it’s a small world I built just for you.  
-    For the next 5 days, you’ll unlock something new every day —  
+    Hey Khizar aka Mistri 🧡 ..., this isn’t just a website —
+    it’s a small world I built just for you.
+    For the next 5 days, you’ll unlock something new every day —
     made from my heart, not my wallet. 🧡
     Ready to start Day 1?
   </p>
 
-  <button onclick="startJourney()">Start 💗</button>
+  <button onclick="startJourney()">
+    Start 💗
+  </button>
 
-  <footer>Made with 🧡 by Shahid 🧸</footer>
+  <div class="lock-message" id="lockMessage"></div>
+
+  <footer>
+    Made with 🧡 by Shahid 🧸
+  </footer>
 
   <script>
+
+    /* =========================
+       DATE LOCK FOR DAY 1
+    ========================= */
+
     function startJourney() {
-      window.location.href = "day1.html";
+
+      // Unlock Date = 24 May 2026
+      const unlockDate =
+        new Date("2026-05-24T00:00:00");
+
+      const now = new Date();
+
+      const lockMessage =
+        document.getElementById("lockMessage");
+
+      if (now >= unlockDate) {
+
+        // Open Day 1
+        window.location.href = "day1.html";
+
+      } else {
+
+        // Remaining Time
+        const diff = unlockDate - now;
+
+        const days =
+          Math.floor(diff / (1000 * 60 * 60 * 24));
+
+        const hours =
+          Math.floor((diff / (1000 * 60 * 60)) % 24);
+
+        const minutes =
+          Math.floor((diff / (1000 * 60)) % 60);
+
+        lockMessage.style.display = "block";
+
+        lockMessage.innerHTML = `
+          🔒 Your 5-Day Gift is locked for now 💛 <br><br>
+          Starts in <b>${days}d ${hours}h ${minutes}m</b>
+        `;
+      }
     }
+
   </script>
+
 </body>
 </html>
-
-
